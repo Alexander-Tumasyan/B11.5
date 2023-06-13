@@ -1,0 +1,12 @@
+image: alpine:latest
+
+stages:
+  - deploy
+
+build:
+  stage: deploy
+  before_script:
+  - apk update
+  - apk add mysql mysql-client
+  script:
+  - 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam < ./select.sql'
